@@ -63,7 +63,7 @@
         <h2>Course Tools</h2>
       </div>
       <button class="sidebar-btn active" onclick="showSection('file')">
-        <i class="fas fa-file-upload"></i> File Management
+        <i class="fas fa-file-upload"></i> Course Materials
       </button>
       <button class="sidebar-btn" onclick="showSection('widget')">
         <i class="fas fa-plug"></i> API Integration
@@ -81,15 +81,15 @@
 
       <div id="file-section">
         <div class="section-header">
-          <h1><i class="fas fa-upload"></i> Course Materials</h1>
-          <p>Upload and manage your course materials efficiently</p>
+          <h1><i class="fas fa-graduation-cap"></i> Course Materials</h1>
+          <p>Upload and manage your educational content efficiently</p>
         </div>
 
         <div class="section">
           <div class="file-upload-box">
-            <i class="fas fa-cloud-upload-alt fa-3x" style="color: #6b7280; margin-bottom: 1rem;"></i>
+            <i class="fas fa-cloud-upload-alt"></i>
             <p>Drag & drop your files here or click to browse</p>
-            <input type="file" id="fileInput" multiple />
+            <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.csv,.zip,.rar" />
             <button onclick="submitFile()" class="submit-btn">
               <i class="fas fa-upload"></i> Upload Files
             </button>
@@ -104,15 +104,20 @@
             <table>
               <thead>
                 <tr>
-                  <th>File Name</th>
-                  <th>Size</th>
-                  <th>Upload Date</th>
-                  <th>Actions</th>
+                  <th><i class="fas fa-file"></i> File Name</th>
+                  <th><i class="fas fa-weight-hanging"></i> Size</th>
+                  <th><i class="fas fa-calendar"></i> Upload Date</th>
+                  <th><i class="fas fa-cog"></i> Actions</th>
                 </tr>
               </thead>
               <tbody id="fileList">
                 <tr>
-                  <td>example.pdf</td>
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                      <i class="fas fa-file-pdf" style="color: #dc2626;"></i>
+                      example.pdf
+                    </div>
+                  </td>
                   <td>2.5 MB</td>
                   <td>2024-03-20</td>
                   <td>
@@ -133,7 +138,7 @@
 
       <div id="widget-section" class="hidden">
         <div class="section-header">
-          <h1><i class="fas fa-code"></i> API Integration</h1>
+          <h1><i class="fas fa-plug"></i> API Integration</h1>
           <p>Integrate TeachMate AI's powerful features into your platform</p>
         </div>
 
@@ -181,6 +186,32 @@
         }
       }
 
+      function getFileIcon(fileName) {
+        const extension = fileName.split('.').pop().toLowerCase();
+        const icons = {
+          'pdf': ['fa-file-pdf', '#dc2626'],
+          'doc': ['fa-file-word', '#2563eb'],
+          'docx': ['fa-file-word', '#2563eb'],
+          'xls': ['fa-file-excel', '#059669'],
+          'xlsx': ['fa-file-excel', '#059669'],
+          'ppt': ['fa-file-powerpoint', '#ea580c'],
+          'pptx': ['fa-file-powerpoint', '#ea580c'],
+          'txt': ['fa-file-lines', '#4b5563'],
+          'csv': ['fa-file-csv', '#4b5563'],
+          'zip': ['fa-file-zipper', '#7c3aed'],
+          'rar': ['fa-file-zipper', '#7c3aed']
+        };
+        return icons[extension] || ['fa-file', '#4b5563'];
+      }
+
+      function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      }
+
       function submitFile() {
         const input = document.getElementById("fileInput");
         const files = input.files;
@@ -191,11 +222,16 @@
         Array.from(files).forEach(file => {
           const row = document.createElement("tr");
           const date = new Date().toISOString().split('T')[0];
-          const size = (file.size / (1024 * 1024)).toFixed(2);
+          const [iconClass, iconColor] = getFileIcon(file.name);
 
           row.innerHTML = `
-            <td>${file.name}</td>
-            <td>${size} MB</td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fas ${iconClass}" style="color: ${iconColor};"></i>
+                ${file.name}
+              </div>
+            </td>
+            <td>${formatFileSize(file.size)}</td>
             <td>${date}</td>
             <td>
               <button onclick="deleteFile(this)" class="delete-btn">
@@ -213,12 +249,25 @@
 
       function deleteFile(btn) {
         const row = btn.closest("tr");
-        row.remove();
-        showToast("File deleted successfully!");
+        row.style.opacity = '0';
+        row.style.transform = 'translateX(20px)';
+        row.style.transition = 'all 0.3s ease';
+        
+        setTimeout(() => {
+          row.remove();
+          showToast("File deleted successfully!");
+        }, 300);
       }
 
       function syncFiles() {
-        showToast("Files synchronized successfully!");
+        const btn = document.querySelector('.sync-btn i');
+        btn.style.transition = 'transform 1s ease';
+        btn.style.transform = 'rotate(360deg)';
+        
+        setTimeout(() => {
+          btn.style.transform = 'rotate(0)';
+          showToast("Files synchronized successfully!");
+        }, 1000);
       }
 
       function copyToClipboard(text) {
@@ -265,7 +314,7 @@
       });
 
       function highlight(e) {
-        dropZone.style.borderColor = '#2563eb';
+        dropZone.style.borderColor = '#4f46e5';
         dropZone.style.backgroundColor = '#ffffff';
       }
 

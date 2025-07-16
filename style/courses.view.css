@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
   --danger-color: #dc2626;
   --danger-hover: #b91c1c;
   --text-color: #1f2937;
@@ -9,6 +9,8 @@
   --bg-white: #ffffff;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  --gradient-secondary: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
 }
 
 body {
@@ -23,13 +25,26 @@ body {
 /* Sidebar Styles */
 aside {
   width: 18rem;
-  background: var(--bg-light);
-  padding: 1.5rem;
+  background: var(--gradient-secondary);
+  padding: 2rem 1.5rem;
   border-right: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+aside::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
 }
 
 .sidebar-header {
   margin-bottom: 2rem;
+  position: relative;
 }
 
 .sidebar-header h2 {
@@ -37,39 +52,78 @@ aside {
   font-weight: 700;
   color: var(--text-color);
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sidebar-header h2::before {
+  content: '\f19d';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--primary-color);
+  font-size: 1.75rem;
 }
 
 .sidebar-btn {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 0.875rem 1.25rem;
+  padding: 1rem 1.25rem;
   font-size: 1rem;
   font-weight: 600;
   border: 1px solid var(--border-color);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   background: var(--bg-white);
   color: var(--text-color);
   margin-bottom: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .sidebar-btn:hover {
   background: var(--bg-light);
-  transform: translateY(-1px);
+  transform: translateX(4px);
   box-shadow: var(--shadow-sm);
 }
 
+.sidebar-btn:hover::before {
+  opacity: 1;
+}
+
 .sidebar-btn.active {
-  background: var(--primary-color);
+  background: var(--gradient-primary);
   color: white;
-  border-color: var(--primary-color);
+  border: none;
+  transform: translateX(0);
+}
+
+.sidebar-btn.active::before {
+  display: none;
 }
 
 .sidebar-btn i {
   margin-right: 0.75rem;
   font-size: 1.125rem;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-btn:hover i {
+  transform: translateX(4px);
 }
 
 /* Main Content Styles */
@@ -87,97 +141,185 @@ main {
   font-weight: 600;
   text-decoration: none;
   border: 1px solid var(--border-color);
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.75rem;
-  transition: all 0.2s ease;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  background: var(--bg-white);
 }
 
 .back-btn:hover {
   background: var(--bg-light);
-  transform: translateY(-1px);
+  transform: translateX(-4px);
   box-shadow: var(--shadow-sm);
 }
 
 .back-btn i {
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
+  transition: transform 0.3s ease;
 }
 
-/* File Upload Section */
+.back-btn:hover i {
+  transform: translateX(-4px);
+}
+
+/* Section Headers */
 .section-header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
 }
 
 .section-header h1 {
   font-size: 2rem;
   font-weight: 700;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-color);
+}
+
+.section-header h1 i {
+  color: var(--primary-color);
 }
 
 .section-header p {
   color: #6b7280;
   margin: 0;
+  font-size: 1.125rem;
 }
 
+/* File Upload Box */
 .file-upload-box {
   border: 2px dashed var(--border-color);
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   padding: 3rem 2rem;
   text-align: center;
   background: var(--bg-light);
   max-width: 600px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.file-upload-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .file-upload-box:hover {
   border-color: var(--primary-color);
-  background: white;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.file-upload-box > * {
+  position: relative;
+  z-index: 2;
+}
+
+.file-upload-box i {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.file-upload-box:hover i {
+  transform: scale(1.1);
 }
 
 .file-upload-box p {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: #6b7280;
   margin-bottom: 1.5rem;
 }
 
 .file-upload-box input[type="file"] {
   margin: 1rem auto;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  background: white;
+  cursor: pointer;
 }
 
 .submit-btn {
-  background: var(--primary-color);
+  background: var(--gradient-primary);
   color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 1rem;
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .submit-btn:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-btn i {
+  font-size: 1.125rem;
+  margin: 0;
+  color: white;
 }
 
 /* Table Styles */
 .table-container {
-  margin-top: 3rem;
   background: white;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   box-shadow: var(--shadow-md);
   overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.table-container:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 }
 
 .table-header {
   padding: 1.5rem;
   border-bottom: 1px solid var(--border-color);
+  background: var(--gradient-secondary);
 }
 
 .table-header h2 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-color);
+}
+
+.table-header h2 i {
+  color: var(--primary-color);
 }
 
 table {
@@ -186,7 +328,7 @@ table {
 }
 
 th, td {
-  padding: 1rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
 }
@@ -195,6 +337,13 @@ th {
   background: var(--bg-light);
   font-weight: 600;
   color: #4b5563;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+tr {
+  transition: background-color 0.3s ease;
 }
 
 tr:hover {
@@ -205,36 +354,41 @@ tr:hover {
 .delete-btn {
   background: var(--danger-color);
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1.25rem;
   font-size: 0.875rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .delete-btn:hover {
   background: var(--danger-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
 }
 
 .sync-btn {
-  background: var(--primary-color);
+  background: var(--gradient-primary);
   color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
+  padding: 0.875rem 2rem;
+  border-radius: 1rem;
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .sync-btn:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Widget Section */
@@ -242,12 +396,18 @@ tr:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.5rem;
   background: var(--bg-light);
-  padding: 1.25rem;
-  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
   border: 1px solid var(--border-color);
   margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.widget-copy-container:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .widget-copy-container code,
@@ -257,24 +417,30 @@ tr:hover {
   font-family: 'Monaco', 'Consolas', monospace;
   color: var(--text-color);
   word-break: break-word;
+  background: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
 }
 
 .copy-btn {
-  background: var(--primary-color);
+  background: var(--gradient-primary);
   color: white;
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
   border: none;
   cursor: pointer;
   font-size: 0.875rem;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .copy-btn:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Toast Notification */
@@ -284,8 +450,8 @@ tr:hover {
   right: 2rem;
   background: var(--text-color);
   color: white;
-  padding: 1rem 1.5rem;
-  border-radius: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
   font-size: 0.875rem;
   display: none;
   z-index: 9999;
@@ -306,4 +472,40 @@ tr:hover {
 
 .hidden {
   display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  
+  aside {
+    width: 100%;
+    padding: 1.5rem 1rem;
+  }
+  
+  .sidebar-btn {
+    padding: 0.75rem 1rem;
+  }
+  
+  main {
+    padding: 1.5rem 1rem;
+  }
+  
+  .section-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .file-upload-box {
+    padding: 2rem 1rem;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  table {
+    min-width: 600px;
+  }
 }
