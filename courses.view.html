@@ -28,7 +28,7 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
-      content="TeachMate AI - Application Development"
+      content="TeachMate AI - Course Management"
     />
     <meta
       property="og:description"
@@ -41,156 +41,32 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="TeachMate AI - Application Development"
+      content="TeachMate AI - Course Management"
     />
     <meta
       name="twitter:description"
       content="Empowering Education Through Technology"
     />
     <meta name="twitter:image" content="favicon_io/og-image.png" />
-    <title>TeachMate AI - File Upload</title>
+    <title>TeachMate AI - Course Management</title>
     <link rel="icon" href="favicon_io/favicon.ico" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        margin: 0;
-        display: flex;
-        min-height: 100vh;
-        background: #fff;
-        color: #000;
-      }
-      aside {
-        width: 16rem;
-        background: #f4f4f4;
-        padding: 1.5rem;
-      }
-      .sidebar-btn {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-        font-weight: 600;
-        border: 1px solid #ccc;
-        border-radius: 12px;
-        background: #fff;
-        color: #212121;
-        margin-bottom: 1rem;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .sidebar-btn.active {
-        background: #212121;
-        color: #fff;
-      }
-      .sidebar-btn i {
-        margin-right: 8px;
-      }
-      main {
-        flex: 1;
-        padding: 2rem;
-      }
-      .back-btn {
-        display: inline-block;
-        margin-bottom: 1.5rem;
-        color: #212121;
-        font-weight: 600;
-        text-decoration: none;
-        border: 1px solid #ccc;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-      }
-      .file-upload-box {
-        border: 2px dashed #ccc;
-        border-radius: 12px;
-        padding: 2rem;
-        text-align: center;
-        background: #fafafa;
-        max-width: 500px;
-      }
-      .file-upload-box input[type="file"] {
-        margin: 1rem auto;
-      }
-      .table-container table {
-        width: 100%;
-        border: 1px solid #ccc;
-        border-collapse: collapse;
-      }
-      .table-container th,
-      .table-container td {
-        padding: 0.75rem;
-        text-align: left;
-        border-bottom: 1px solid #ccc;
-      }
-      .delete-btn {
-        background: #dc2626;
-        color: white;
-        padding: 0.4rem 0.75rem;
-        font-size: 0.875rem;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-      }
-      .delete-btn:hover {
-        background: #b91c1c;
-      }
-      .copy-btn {
-        background: #212121;
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.875rem;
-        white-space: nowrap;
-      }
-      .widget-copy-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        background-color: #f3f4f6;
-        padding: 1rem;
-        border-radius: 8px;
-        flex-wrap: wrap;
-      }
-      .widget-copy-container code,
-      .widget-copy-container pre {
-        flex: 1;
-        margin: 0;
-        word-break: break-word;
-      }
-      .section {
-        margin-bottom: 2rem;
-      }
-      #toast {
-        position: fixed;
-        bottom: 1rem;
-        right: 1rem;
-        background-color: #212121;
-        color: white;
-        padding: 0.75rem 1.25rem;
-        border-radius: 6px;
-        font-size: 0.875rem;
-        display: none;
-        z-index: 9999;
-      }
-      .hidden {
-        display: none;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style/courses.view.css" />
   </head>
   <body>
     <aside>
-      <h2 class="text-xl font-bold mb-4">Menu</h2>
+      <div class="sidebar-header">
+        <h2>Course Tools</h2>
+      </div>
       <button class="sidebar-btn active" onclick="showSection('file')">
-        <i class="fas fa-file-upload"></i> File Upload
+        <i class="fas fa-file-upload"></i> File Management
       </button>
       <button class="sidebar-btn" onclick="showSection('widget')">
-        <i class="fas fa-plug"></i> API Widget
+        <i class="fas fa-plug"></i> API Integration
       </button>
     </aside>
 
@@ -200,66 +76,66 @@
         onclick="history.back(); return false;"
         class="back-btn"
       >
-        <i class="fas fa-arrow-left"></i> Back
+        <i class="fas fa-arrow-left"></i> Back to Courses
       </a>
 
       <div id="file-section">
-        <h1 class="text-3xl font-bold mb-2">
-          <i class="fas fa-upload"></i> Upload and Manage Files
-        </h1>
-        <p class="text-gray-600 mb-4">
-          Upload files and manage them efficiently.
-        </p>
+        <div class="section-header">
+          <h1><i class="fas fa-upload"></i> Course Materials</h1>
+          <p>Upload and manage your course materials efficiently</p>
+        </div>
 
         <div class="section">
           <div class="file-upload-box">
-            <p class="mb-2">Drag & Drop or Click to Upload</p>
-            <input type="file" id="fileInput" />
-            <button
-              onclick="submitFile()"
-              class="mt-4 bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition"
-            >
-              Submit
+            <i class="fas fa-cloud-upload-alt fa-3x" style="color: #6b7280; margin-bottom: 1rem;"></i>
+            <p>Drag & drop your files here or click to browse</p>
+            <input type="file" id="fileInput" multiple />
+            <button onclick="submitFile()" class="submit-btn">
+              <i class="fas fa-upload"></i> Upload Files
             </button>
           </div>
         </div>
 
-        <div class="section table-container">
-          <h2 class="text-xl font-semibold mb-2">Uploaded Files</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>File Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="fileList">
-              <tr>
-                <td>example.pdf</td>
-                <td>
-                  <button onclick="deleteFile(this)" class="delete-btn">
-                    <i class="fas fa-trash"></i> Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
         <div class="section">
-          <button
-            onclick="syncFiles()"
-            class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition"
-          >
+          <div class="table-container">
+            <div class="table-header">
+              <h2><i class="fas fa-folder-open"></i> Uploaded Materials</h2>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>File Name</th>
+                  <th>Size</th>
+                  <th>Upload Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="fileList">
+                <tr>
+                  <td>example.pdf</td>
+                  <td>2.5 MB</td>
+                  <td>2024-03-20</td>
+                  <td>
+                    <button onclick="deleteFile(this)" class="delete-btn">
+                      <i class="fas fa-trash"></i> Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <button onclick="syncFiles()" class="sync-btn">
             <i class="fas fa-sync-alt"></i> Sync Files
           </button>
         </div>
       </div>
 
       <div id="widget-section" class="hidden">
-        <h1 class="text-3xl font-bold mb-4">
-          <i class="fas fa-code"></i> API Widget - Generative AI
-        </h1>
+        <div class="section-header">
+          <h1><i class="fas fa-code"></i> API Integration</h1>
+          <p>Integrate TeachMate AI's powerful features into your platform</p>
+        </div>
 
         <div class="section">
           <h3 class="text-lg font-semibold mb-2">1. API Endpoint</h3>
@@ -275,11 +151,9 @@
         </div>
 
         <div class="section">
-          <h3 class="text-lg font-semibold mb-2">2. Generative AI Script</h3>
+          <h3 class="text-lg font-semibold mb-2">2. Integration Script</h3>
           <div class="widget-copy-container">
-            <pre id="scriptBlock">
-&lt;script src=&quot;https://teachmateai.com/widget.js&quot;&gt;&lt;/script&gt;</pre
-            >
+            <pre id="scriptBlock">&lt;script src="https://teachmateai.com/widget.js"&gt;&lt;/script&gt;</pre>
             <button onclick="copyScriptCode()" class="copy-btn">
               <i class="fas fa-copy"></i> Copy
             </button>
@@ -288,7 +162,7 @@
       </div>
     </main>
 
-    <div id="toast">Copied to clipboard!</div>
+    <div id="toast"></div>
 
     <script>
       function showSection(section) {
@@ -309,50 +183,107 @@
 
       function submitFile() {
         const input = document.getElementById("fileInput");
-        const file = input.files[0];
-        if (!file) return;
+        const files = input.files;
+        if (!files.length) return;
 
         const table = document.getElementById("fileList");
-        const row = document.createElement("tr");
+        
+        Array.from(files).forEach(file => {
+          const row = document.createElement("tr");
+          const date = new Date().toISOString().split('T')[0];
+          const size = (file.size / (1024 * 1024)).toFixed(2);
 
-        row.innerHTML = `
-        <td>${file.name}</td>
-        <td><button onclick="deleteFile(this)" class="delete-btn"><i class="fas fa-trash"></i> Delete</button></td>
-      `;
+          row.innerHTML = `
+            <td>${file.name}</td>
+            <td>${size} MB</td>
+            <td>${date}</td>
+            <td>
+              <button onclick="deleteFile(this)" class="delete-btn">
+                <i class="fas fa-trash"></i> Delete
+              </button>
+            </td>
+          `;
 
-        table.appendChild(row);
+          table.appendChild(row);
+        });
+        
         input.value = "";
+        showToast("Files uploaded successfully!");
       }
 
       function deleteFile(btn) {
         const row = btn.closest("tr");
         row.remove();
+        showToast("File deleted successfully!");
       }
 
       function syncFiles() {
-        showToast("Files synced successfully!");
+        showToast("Files synchronized successfully!");
       }
 
       function copyToClipboard(text) {
-        navigator.clipboard
-          .writeText(text)
-          .then(() => showToast("Copied to clipboard!"));
+        navigator.clipboard.writeText(text)
+          .then(() => showToast("Copied to clipboard!"))
+          .catch(() => showToast("Failed to copy text"));
       }
 
       function copyScriptCode() {
         const code = document.getElementById("scriptBlock").innerText;
-        navigator.clipboard
-          .writeText(code)
-          .then(() => showToast("Script copied!"));
+        navigator.clipboard.writeText(code)
+          .then(() => showToast("Script copied to clipboard!"))
+          .catch(() => showToast("Failed to copy script"));
       }
 
       function showToast(message) {
         const toast = document.getElementById("toast");
         toast.textContent = message;
         toast.style.display = "block";
+        
         setTimeout(() => {
           toast.style.display = "none";
-        }, 2000);
+        }, 3000);
+      }
+
+      // Add drag and drop functionality
+      const dropZone = document.querySelector('.file-upload-box');
+      
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+      });
+
+      function highlight(e) {
+        dropZone.style.borderColor = '#2563eb';
+        dropZone.style.backgroundColor = '#ffffff';
+      }
+
+      function unhighlight(e) {
+        dropZone.style.borderColor = '';
+        dropZone.style.backgroundColor = '';
+      }
+
+      dropZone.addEventListener('drop', handleDrop, false);
+
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        
+        if (files.length > 0) {
+          document.getElementById('fileInput').files = files;
+          submitFile();
+        }
       }
     </script>
   </body>
