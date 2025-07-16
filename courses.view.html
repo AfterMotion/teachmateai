@@ -56,6 +56,144 @@
     />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style/courses.view.css" />
+    <style>
+      /* API Integration Section Styles */
+      .api-section {
+        margin-top: 2rem;
+      }
+
+      .api-card {
+        background: var(--bg-light);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+      }
+
+      .api-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .api-card h3 {
+        margin: 0 0 1rem 0;
+        font-size: 1.125rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-color);
+      }
+
+      .api-card h3 i {
+        color: var(--primary-color);
+      }
+
+      .code-block {
+        background: #1f2937;
+        color: white;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        overflow-x: auto;
+        font-family: 'Monaco', 'Consolas', monospace;
+        position: relative;
+      }
+
+      .code-block code {
+        display: block;
+        white-space: pre;
+        color: #e5e7eb;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .api-info {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 0.75rem;
+        border: 1px solid var(--border-color);
+      }
+
+      .api-info p {
+        margin: 0;
+        color: #6b7280;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      .api-info code {
+        background: var(--bg-light);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-family: 'Monaco', 'Consolas', monospace;
+        font-size: 0.875rem;
+        color: var(--primary-color);
+      }
+
+      .api-params {
+        margin-top: 1rem;
+      }
+
+      .param-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.5rem;
+      }
+
+      .param-table th,
+      .param-table td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.875rem;
+      }
+
+      .param-table th {
+        background: var(--bg-light);
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      .param-table td code {
+        background: var(--bg-light);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-family: 'Monaco', 'Consolas', monospace;
+        font-size: 0.875rem;
+        color: var(--primary-color);
+      }
+
+      .param-required {
+        color: var(--danger-color);
+        font-weight: 500;
+      }
+
+      .param-optional {
+        color: var(--success-color);
+        font-weight: 500;
+      }
+    </style>
   </head>
   <body>
     <aside>
@@ -139,29 +277,127 @@
       <div id="widget-section" class="hidden">
         <div class="section-header">
           <h1><i class="fas fa-plug"></i> API Integration</h1>
-          <p>Integrate TeachMate AI's powerful features into your platform</p>
+          <p>Integrate TeachMate AI's powerful course features into your platform</p>
         </div>
 
-        <div class="section">
-          <h3 class="text-lg font-semibold mb-2">1. API Endpoint</h3>
-          <div class="widget-copy-container">
-            <code>https://teachmateai.com/api/generative-ai</code>
-            <button
-              onclick="copyToClipboard('https://teachmateai.com/api/generative-ai')"
-              class="copy-btn"
-            >
-              <i class="fas fa-copy"></i> Copy
-            </button>
+        <div class="api-section">
+          <div class="api-card">
+            <h3><i class="fas fa-server"></i> API Endpoint</h3>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyToClipboard('https://teachmateai.com/api/v1/courses')">
+                <i class="fas fa-copy"></i> Copy
+              </button>
+              <code>https://teachmateai.com/api/v1/courses</code>
+            </div>
+            <div class="api-info">
+              <p>Base URL for all course-related API endpoints. Use this URL with the appropriate HTTP method and parameters.</p>
+            </div>
           </div>
-        </div>
 
-        <div class="section">
-          <h3 class="text-lg font-semibold mb-2">2. Integration Script</h3>
-          <div class="widget-copy-container">
-            <pre id="scriptBlock">&lt;script src="https://teachmateai.com/widget.js"&gt;&lt;/script&gt;</pre>
-            <button onclick="copyScriptCode()" class="copy-btn">
-              <i class="fas fa-copy"></i> Copy
-            </button>
+          <div class="api-card">
+            <h3><i class="fas fa-code"></i> Authentication</h3>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyToClipboard('Authorization: Bearer YOUR_API_KEY')">
+                <i class="fas fa-copy"></i> Copy
+              </button>
+              <code>Authorization: Bearer YOUR_API_KEY</code>
+            </div>
+            <div class="api-info">
+              <p>Add this header to all API requests. Replace <code>YOUR_API_KEY</code> with your actual API key.</p>
+            </div>
+          </div>
+
+          <div class="api-card">
+            <h3><i class="fas fa-book"></i> Course Widget Integration</h3>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyScriptCode()">
+                <i class="fas fa-copy"></i> Copy
+              </button>
+              <code id="scriptBlock">&lt;script src="https://teachmateai.com/widget/course.js"&gt;&lt;/script&gt;
+&lt;div id="teachmate-course-widget" data-course-id="YOUR_COURSE_ID"&gt;&lt;/div&gt;
+&lt;script&gt;
+  TeachMateCourse.init({
+    theme: 'light',
+    language: 'en',
+    autoSync: true
+  });
+&lt;/script&gt;</code>
+            </div>
+            <div class="api-info">
+              <p>Add this code to your HTML where you want the course widget to appear. Replace <code>YOUR_COURSE_ID</code> with your actual course ID.</p>
+            </div>
+            <div class="api-params">
+              <h4>Available Parameters:</h4>
+              <table class="param-table">
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>theme</code></td>
+                    <td>string</td>
+                    <td>'light'</td>
+                    <td><span class="param-optional">Optional</span> - Widget theme (light/dark/auto)</td>
+                  </tr>
+                  <tr>
+                    <td><code>language</code></td>
+                    <td>string</td>
+                    <td>'en'</td>
+                    <td><span class="param-optional">Optional</span> - Widget language code</td>
+                  </tr>
+                  <tr>
+                    <td><code>autoSync</code></td>
+                    <td>boolean</td>
+                    <td>true</td>
+                    <td><span class="param-optional">Optional</span> - Enable automatic data synchronization</td>
+                  </tr>
+                  <tr>
+                    <td><code>courseId</code></td>
+                    <td>string</td>
+                    <td>-</td>
+                    <td><span class="param-required">Required</span> - Your course identifier</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="api-card">
+            <h3><i class="fas fa-terminal"></i> API Examples</h3>
+            <div class="code-block">
+              <button class="copy-btn" onclick="copyToClipboard(document.querySelector('#apiExamples').textContent)">
+                <i class="fas fa-copy"></i> Copy
+              </button>
+              <code id="apiExamples">// Fetch course details
+fetch('https://teachmateai.com/api/v1/courses/123', {
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY'
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data));
+
+// Create new course
+fetch('https://teachmateai.com/api/v1/courses', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    title: 'My Course',
+    description: 'Course description'
+  })
+});</code>
+            </div>
+            <div class="api-info">
+              <p>Example API calls using JavaScript fetch. Remember to replace <code>YOUR_API_KEY</code> with your actual API key.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -272,15 +508,15 @@
 
       function copyToClipboard(text) {
         navigator.clipboard.writeText(text)
-          .then(() => showToast("Copied to clipboard!"))
-          .catch(() => showToast("Failed to copy text"));
+          .then(() => showToast('Copied to clipboard!'))
+          .catch(() => showToast('Failed to copy text'));
       }
 
       function copyScriptCode() {
-        const code = document.getElementById("scriptBlock").innerText;
+        const code = document.getElementById('scriptBlock').textContent;
         navigator.clipboard.writeText(code)
-          .then(() => showToast("Script copied to clipboard!"))
-          .catch(() => showToast("Failed to copy script"));
+          .then(() => showToast('Script copied to clipboard!'))
+          .catch(() => showToast('Failed to copy script'));
       }
 
       function showToast(message) {
