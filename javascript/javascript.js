@@ -30,27 +30,145 @@ function updateThemeToggleIcon() {
     }
 }
 
-// Navigation function for cards
-function navigateTo(destination) {
-    // Add visual feedback
-    const card = event.currentTarget;
-    card.style.transform = 'scale(0.95)';
-    
-    setTimeout(() => {
-        card.style.transform = '';
-        
-        // Simulate navigation (in a real app, this would redirect to actual pages)
-        console.log(`Navigating to: ${destination}`);
-        
-        // Show a temporary message (you can replace this with actual navigation)
-        showNotification(`Navigating to ${destination.charAt(0).toUpperCase() + destination.slice(1)}...`);
-        
-        // In a real application, you would use:
-        // window.location.href = `/${destination}`;
-        // or
-        // router.push(`/${destination}`);
-    }, 150);
+// Navigation function
+function navigateTo(module) {
+    switch(module) {
+        case 'course':
+            window.location.href = 'courses.index.html';
+            break;
+        case 'exam':
+            window.location.href = 'exam.index.html';
+            break;
+        case 'question':
+            window.location.href = 'question.index.html';
+            break;
+        case 'dashboard':
+            window.location.href = 'dashboard.index.html';
+            break;
+        default:
+            console.log('Unknown module:', module);
+    }
 }
+
+// Theme toggle functionality
+function setupThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to light
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+}
+
+function updateThemeIcon(theme) {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+    
+    const icon = themeToggle.querySelector('i');
+    if (!icon) return;
+    
+    if (theme === 'dark') {
+        icon.className = 'fas fa-sun';
+    } else {
+        icon.className = 'fas fa-moon';
+    }
+}
+
+// Card hover effects
+function setupCardEffects() {
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+        
+        card.addEventListener('click', () => {
+            // Add click animation
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                card.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    setupThemeToggle();
+    setupCardEffects();
+    
+    // Set initial theme
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+});
+
+// Add smooth scrolling for better UX
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+
+// Add loading states for navigation
+function addLoadingState(element) {
+    if (!element) return;
+    
+    const originalContent = element.innerHTML;
+    element.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+    element.style.pointerEvents = 'none';
+    
+    return () => {
+        element.innerHTML = originalContent;
+        element.style.pointerEvents = 'auto';
+    };
+}
+
+// Enhanced navigation with loading state
+function navigateToWithLoading(module) {
+    const card = event?.currentTarget;
+    if (card) {
+        const resetLoading = addLoadingState(card);
+        
+        // Simulate loading delay
+        setTimeout(() => {
+            navigateTo(module);
+        }, 300);
+    } else {
+        navigateTo(module);
+    }
+}
+
+// Export functions for global access
+window.navigateTo = navigateTo;
+window.navigateToWithLoading = navigateToWithLoading;
 
 // Notification function
 function showNotification(message) {

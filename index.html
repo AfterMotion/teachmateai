@@ -117,13 +117,13 @@
             </div>
 
             <!-- Question Card -->
-            <div class="card" onclick="navigateTo('question')">
+            <a class="card" href="question.index.html">
               <div class="card-icon">
                 <i class="fas fa-question-circle"></i>
               </div>
               <h3 class="card-title">Question</h3>
-              <p class="card-description">Build and manage question banks</p>
-            </div>
+              <p class="card-description">Generate and manage questions</p>
+            </a>
 
             <!-- Dashboard Card -->
             <div class="card" onclick="navigateTo('dashboard')">
@@ -143,6 +143,10 @@
       </footer>
     </div>
 
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+      <i class="fas fa-moon"></i>
+    </button>
 
     <script src="javascript/javascript.js"></script>
   </body>

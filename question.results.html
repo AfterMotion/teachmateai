@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Questions - TeachMate AI</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/question.css">
+    <link rel="stylesheet" href="style/results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>TeachMate AI</span>
+                </div>
+                <p class="tagline">Generated Questions</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="results-container">
+                <div class="results-card">
+                    <div class="card-header">
+                        <div class="header-content">
+                            <h1 class="card-title">Generated Questions</h1>
+                            <p class="card-subtitle" id="generationInfo">Loading...</p>
+                        </div>
+                        <div class="header-actions">
+                            <button class="btn btn-secondary" id="backBtn">
+                                <i class="fas fa-arrow-left"></i>
+                                Back
+                            </button>
+                            <button class="btn btn-primary" id="downloadBtn">
+                                <i class="fas fa-download"></i>
+                                Download as Excel
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="results-content">
+                        <div class="filters">
+                            <div class="filter-group">
+                                <label for="questionTypeFilter" class="filter-label">
+                                    <i class="fas fa-filter"></i>
+                                    Filter by Type
+                                </label>
+                                <select id="questionTypeFilter" class="filter-select">
+                                    <option value="">All Types</option>
+                                    <option value="mcq">MCQ</option>
+                                    <option value="subjective">Subjective</option>
+                                    <option value="one-line">One Line</option>
+                                    <option value="true-false">True/False</option>
+                                    <option value="fill-blank">Fill in Blank</option>
+                                    <option value="matching">Matching</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="courseFilter" class="filter-label">
+                                    <i class="fas fa-book"></i>
+                                    Filter by Course
+                                </label>
+                                <select id="courseFilter" class="filter-select">
+                                    <option value="">All Courses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="questions-list" id="questionsList">
+                            <!-- Questions will be populated by JavaScript -->
+                        </div>
+
+                        <div class="no-questions" id="noQuestions" style="display: none;">
+                            <div class="no-questions-content">
+                                <i class="fas fa-search"></i>
+                                <h3>No questions found</h3>
+                                <p>Try adjusting your filters or generate new questions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 TeachMate AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="javascript/javascript.js"></script>
+    <script src="javascript/results.js"></script>
+</body>
+</html> 

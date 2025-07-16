@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Generation - TeachMate AI</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/question.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>TeachMate AI</span>
+                </div>
+                <p class="tagline">Intelligent Question Generation</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="question-container">
+                <div class="question-card">
+                    <div class="card-header">
+                        <h1 class="card-title">Question Generation</h1>
+                        <p class="card-subtitle">Generate custom questions for your courses</p>
+                    </div>
+
+                    <form id="questionForm" class="question-form">
+                        <!-- Course/Module Selection -->
+                        <div class="form-group">
+                            <label for="courseSelect" class="form-label">
+                                <i class="fas fa-book"></i>
+                                Select Course/Module
+                            </label>
+                            <div class="search-select-container">
+                                <input 
+                                    type="text" 
+                                    id="courseSearch" 
+                                    class="search-input" 
+                                    placeholder="Search for courses or modules..."
+                                    autocomplete="off"
+                                >
+                                <div id="courseDropdown" class="dropdown-list">
+                                    <!-- Options will be populated by JavaScript -->
+                                </div>
+                                <div id="selectedCourses" class="selected-items">
+                                    <!-- Selected courses will appear here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question Type Selection -->
+                        <div class="form-group">
+                            <label for="questionType" class="form-label">
+                                <i class="fas fa-question-circle"></i>
+                                Question Type
+                            </label>
+                            <select id="questionType" class="form-select" required>
+                                <option value="">Select question type</option>
+                                <option value="mcq">MCQ Question</option>
+                                <option value="subjective">Subjective Question</option>
+                                <option value="one-line">One Line Answer</option>
+                                <option value="true-false">True/False</option>
+                                <option value="fill-blank">Fill in the Blank</option>
+                                <option value="matching">Matching</option>
+                            </select>
+                        </div>
+
+                        <!-- Number of Questions -->
+                        <div class="form-group">
+                            <label for="questionCount" class="form-label">
+                                <i class="fas fa-list-ol"></i>
+                                Number of Questions
+                            </label>
+                            <input 
+                                type="number" 
+                                id="questionCount" 
+                                class="form-input" 
+                                min="1" 
+                                max="100" 
+                                value="10" 
+                                required
+                            >
+                            <small class="form-hint">Enter a number between 1 and 100</small>
+                        </div>
+
+                        <!-- Generate Button -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="generateBtn">
+                                <i class="fas fa-magic"></i>
+                                Generate Questions
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 TeachMate AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="javascript/javascript.js"></script>
+    <script src="javascript/question.js"></script>
+</body>
+</html>
