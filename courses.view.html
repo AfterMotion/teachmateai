@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeachMate AI - File Upload</title>
+    <link rel="icon" href="favicon_io/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        display: flex;
+        min-height: 100vh;
+        background: #fff;
+        color: #000;
+      }
+      aside {
+        width: 16rem;
+        background: #f4f4f4;
+        padding: 1.5rem;
+      }
+      .sidebar-btn {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        background: #fff;
+        color: #212121;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .sidebar-btn.active {
+        background: #212121;
+        color: #fff;
+      }
+      .sidebar-btn i {
+        margin-right: 8px;
+      }
+      main {
+        flex: 1;
+        padding: 2rem;
+      }
+      .back-btn {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        color: #212121;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+      }
+      .file-upload-box {
+        border: 2px dashed #ccc;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        background: #fafafa;
+        max-width: 500px;
+      }
+      .file-upload-box input[type="file"] {
+        margin: 1rem auto;
+      }
+      .table-container table {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+      .table-container th,
+      .table-container td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+      }
+      .delete-btn {
+        background: #dc2626;
+        color: white;
+        padding: 0.4rem 0.75rem;
+        font-size: 0.875rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .delete-btn:hover {
+        background: #b91c1c;
+      }
+      .copy-btn {
+        background: #212121;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        white-space: nowrap;
+      }
+      .widget-copy-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        background-color: #f3f4f6;
+        padding: 1rem;
+        border-radius: 8px;
+        flex-wrap: wrap;
+      }
+      .widget-copy-container code,
+      .widget-copy-container pre {
+        flex: 1;
+        margin: 0;
+        word-break: break-word;
+      }
+      .section {
+        margin-bottom: 2rem;
+      }
+      #toast {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        background-color: #212121;
+        color: white;
+        padding: 0.75rem 1.25rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        display: none;
+        z-index: 9999;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <aside>
+      <h2 class="text-xl font-bold mb-4">Menu</h2>
+      <button class="sidebar-btn active" onclick="showSection('file')">
+        <i class="fas fa-file-upload"></i> File Upload
+      </button>
+      <button class="sidebar-btn" onclick="showSection('widget')">
+        <i class="fas fa-plug"></i> API Widget
+      </button>
+    </aside>
+
+    <main>
+      <a href="courses.index.html" onclick="history.back(); return false;" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+
+      <div id="file-section">
+        <h1 class="text-3xl font-bold mb-2">
+          <i class="fas fa-upload"></i> Upload and Manage Files
+        </h1>
+        <p class="text-gray-600 mb-4">
+          Upload files and manage them efficiently.
+        </p>
+
+        <div class="section">
+          <div class="file-upload-box">
+            <p class="mb-2">Drag & Drop or Click to Upload</p>
+            <input type="file" id="fileInput" />
+            <button
+              onclick="submitFile()"
+              class="mt-4 bg-black text-white px-5 py-2 rounded hover:bg-gray-800 transition"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+
+        <div class="section table-container">
+          <h2 class="text-xl font-semibold mb-2">Uploaded Files</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>File Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="fileList">
+              <tr>
+                <td>example.pdf</td>
+                <td>
+                  <button onclick="deleteFile(this)" class="delete-btn">
+                    <i class="fas fa-trash"></i> Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <button
+            onclick="syncFiles()"
+            class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition"
+          >
+            <i class="fas fa-sync-alt"></i> Sync Files
+          </button>
+        </div>
+      </div>
+
+      <div id="widget-section" class="hidden">
+        <h1 class="text-3xl font-bold mb-4">
+          <i class="fas fa-code"></i> API Widget - Generative AI
+        </h1>
+
+        <div class="section">
+          <h3 class="text-lg font-semibold mb-2">1. API Endpoint</h3>
+          <div class="widget-copy-container">
+            <code>https://teachmateai.com/api/generative-ai</code>
+            <button
+              onclick="copyToClipboard('https://teachmateai.com/api/generative-ai')"
+              class="copy-btn"
+            >
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 class="text-lg font-semibold mb-2">2. Generative AI Script</h3>
+          <div class="widget-copy-container">
+            <pre id="scriptBlock">
+&lt;script src=&quot;https://teachmateai.com/widget.js&quot;&gt;&lt;/script&gt;</pre
+            >
+            <button onclick="copyScriptCode()" class="copy-btn">
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast">Copied to clipboard!</div>
+
+    <script>
+      function showSection(section) {
+        document.getElementById("file-section").classList.add("hidden");
+        document.getElementById("widget-section").classList.add("hidden");
+        document
+          .querySelectorAll(".sidebar-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+
+        if (section === "file") {
+          document.getElementById("file-section").classList.remove("hidden");
+          document.querySelectorAll(".sidebar-btn")[0].classList.add("active");
+        } else {
+          document.getElementById("widget-section").classList.remove("hidden");
+          document.querySelectorAll(".sidebar-btn")[1].classList.add("active");
+        }
+      }
+
+      function submitFile() {
+        const input = document.getElementById("fileInput");
+        const file = input.files[0];
+        if (!file) return;
+
+        const table = document.getElementById("fileList");
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+        <td>${file.name}</td>
+        <td><button onclick="deleteFile(this)" class="delete-btn"><i class="fas fa-trash"></i> Delete</button></td>
+      `;
+
+        table.appendChild(row);
+        input.value = "";
+      }
+
+      function deleteFile(btn) {
+        const row = btn.closest("tr");
+        row.remove();
+      }
+
+      function syncFiles() {
+        showToast("Files synced successfully!");
+      }
+
+      function copyToClipboard(text) {
+        navigator.clipboard
+          .writeText(text)
+          .then(() => showToast("Copied to clipboard!"));
+      }
+
+      function copyScriptCode() {
+        const code = document.getElementById("scriptBlock").innerText;
+        navigator.clipboard
+          .writeText(code)
+          .then(() => showToast("Script copied!"));
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.style.display = "block";
+        setTimeout(() => {
+          toast.style.display = "none";
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

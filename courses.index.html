@@ -17,18 +17,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TeachMate AI - Course Management</title>
 
- <!-- Open Graph / Facebook / WhatsApp -->
- <meta property="og:type" content="website" />
- <meta property="og:title" content="TeachMate AI - Application Development" />
- <meta property="og:description" content="Empowering Education Through Technology" />
- <meta property="og:image" content="favicon_io/og-image.png" />
- <meta property="og:url" content="https://yourdomain.com/" />
- 
- <!-- Twitter -->
- <meta name="twitter:card" content="summary_large_image" />
- <meta name="twitter:title" content="TeachMate AI - Application Development" />
- <meta name="twitter:description" content="Empowering Education Through Technology" />
- <meta name="twitter:image" content="favicon_io/og-image.png" />
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="TeachMate AI - Application Development"
+    />
+    <meta
+      property="og:description"
+      content="Empowering Education Through Technology"
+    />
+    <meta property="og:image" content="favicon_io/og-image.png" />
+    <meta property="og:url" content="https://teachmateai.com/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="TeachMate AI - Application Development"
+    />
+    <meta
+      name="twitter:description"
+      content="Empowering Education Through Technology"
+    />
+    <meta name="twitter:image" content="favicon_io/og-image.png" />
     <!-- Favicon and App Icons -->
     <link
       rel="apple-touch-icon"
@@ -104,7 +116,9 @@
                   <td>Learn the basics of Artificial Intelligence</td>
                   <td>
                     <button class="btn view-btn">
-                      <i class="fas fa-eye"></i> View
+                      <a href="courses.view.html" class="__card">
+                        <i class="fas fa-eye"></i> View
+                      </a>
                     </button>
                     <button class="btn delete-btn" onclick="deleteRow(this)">
                       <i class="fas fa-trash"></i> Delete
@@ -194,14 +208,14 @@
           <td>${courseCount}</td>
           <td>${name}</td>
           <td>${desc}</td>
-          <td>
-            <button class="btn view-btn">
-              <i class="fas fa-eye"></i> View
-            </button>
+         <td>
+            <a href="courses.view.html" class="btn view-btn __card">
+                <i class="fas fa-eye"></i> View
+            </a>
             <button class="btn delete-btn" onclick="deleteRow(this)">
-              <i class="fas fa-trash"></i> Delete
+                <i class="fas fa-trash"></i> Delete
             </button>
-          </td>
+        </td>
         `;
 
         tbody.appendChild(row);
@@ -268,6 +282,10 @@
       .modal-actions button {
         padding: 10px 16px;
         font-size: 14px;
+      }
+      .__card {
+        text-decoration: none;
+        color: #000;
       }
     </style>
   </body>

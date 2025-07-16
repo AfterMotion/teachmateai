@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  background-color: #fafafa;
+}
+
+.main {
+  background-color: #ffffff;
+}
+
+/* shadcn/ui overrides for black & white theme */
+.shadcn-button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.shadcn-button-secondary {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.shadcn-input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+}
+
+.shadcn-label {
+  font-weight: 500;
+}
+
+/* Table styling */
+table {
+  border: 1px solid #e5e7eb;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e5e7eb;
+}
