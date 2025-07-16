@@ -1,1 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeachMate AI - Course Management</title>
 
+    <!-- Fonts and Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style/courses.index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="logo-container">
+          <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>TeachMate AI</span>
+          </div>
+          <p class="tagline">Empowering Education Through Technology</p>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="page-section">
+          <div class="page-header">
+            <h1 class="page-title">Manage Courses</h1>
+            <button class="btn add-btn" onclick="openModal()">
+              <i class="fas fa-plus"></i> Add New
+            </button>
+          </div>
+
+          <!-- Course Table -->
+          <div class="table-container">
+            <table class="course-table" id="courseTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Course Name</th>
+                  <th>Description</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="courseBody">
+                <tr>
+                  <td>1</td>
+                  <td>Introduction to AI</td>
+                  <td>Learn the basics of Artificial Intelligence</td>
+                  <td>
+                    <button class="btn view-btn">
+                      <i class="fas fa-eye"></i> View
+                    </button>
+                    <button class="btn delete-btn" onclick="deleteRow(this)">
+                      <i class="fas fa-trash"></i> Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>&copy; 2025 TeachMate AI. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <!-- Modal -->
+    <div id="courseModal" class="modal hidden">
+      <div class="modal-content">
+        <h2 class="text-xl font-semibold mb-4">Add New Course</h2>
+        <div class="form-group">
+          <label for="courseName">Course Name</label>
+          <input type="text" id="courseName" placeholder="Enter course name" />
+        </div>
+        <div class="form-group">
+          <label for="courseDesc">Description</label>
+          <textarea id="courseDesc" placeholder="Enter course description"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="btn add-btn" onclick="addCourse()">OK</button>
+          <button class="btn delete-btn" onclick="closeModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="javascript/javascript.js"></script>
+    <script>
+      let courseCount = 2;
+      const sampleCourses = [
+        ["Data Structures", "Core fundamentals for programming"],
+        ["Digital Marketing", "SEO, SEM, and content marketing"],
+        ["UI/UX Design", "User experience and interface design"],
+        ["Python Programming", "Intro to Python coding concepts"],
+        ["Cloud Computing", "Learn AWS, Azure, and cloud infra"],
+        ["Cybersecurity Basics", "Intro to digital security threats"]
+      ];
+
+      window.onload = () => {
+        sampleCourses.forEach(([name, desc]) => {
+          addCourseToTable(name, desc);
+        });
+      };
+
+      function openModal() {
+        document.getElementById("courseModal").classList.remove("hidden");
+      }
+
+      function closeModal() {
+        document.getElementById("courseModal").classList.add("hidden");
+        document.getElementById("courseName").value = "";
+        document.getElementById("courseDesc").value = "";
+      }
+
+      function addCourse() {
+        const name = document.getElementById("courseName").value.trim();
+        const desc = document.getElementById("courseDesc").value.trim();
+        if (name === "" || desc === "") return;
+        addCourseToTable(name, desc);
+        closeModal();
+      }
+
+      function addCourseToTable(name, desc) {
+        const tbody = document.getElementById("courseBody");
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${courseCount}</td>
+          <td>${name}</td>
+          <td>${desc}</td>
+          <td>
+            <button class="btn view-btn">
+              <i class="fas fa-eye"></i> View
+            </button>
+            <button class="btn delete-btn" onclick="deleteRow(this)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </td>
+        `;
+
+        tbody.appendChild(row);
+        courseCount++;
+      }
+
+      function deleteRow(button) {
+        const row = button.closest("tr");
+        row.remove();
+      }
+    </script>
+
+    <style>
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal.hidden {
+        display: none;
+      }
+
+      .modal-content {
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 420px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-group label {
+        display: block;
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-top: 6px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .modal-actions button {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+    </style>
+  </body>
+</html>
