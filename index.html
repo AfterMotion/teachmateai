@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeachMate AI - Application Development</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header with Company Logo -->
+      <header class="header">
+        <div class="logo-container">
+          <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>TeachMate AI</span>
+          </div>
+          <p class="tagline">Empowering Education Through Technology</p>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="cards-container">
+          <h1 class="page-title">Welcome to TeachMate AI</h1>
+          <p class="page-subtitle">Choose your destination to get started</p>
+
+          <div class="cards-grid">
+            <!-- Course Card -->
+            <a class="card __card" href="courses.index.html" onclick="navigateTo('course')">
+              <div class="card-icon">
+                <i class="fas fa-book-open"></i>
+              </div>
+              <h3 class="card-title">Course</h3>
+              <p class="card-description">
+                Manage and organize your educational courses
+              </p>
+            </a>
+
+            <!-- Exam Card -->
+            <div class="card" onclick="navigateTo('exam')">
+              <div class="card-icon">
+                <i class="fas fa-clipboard-check"></i>
+              </div>
+              <h3 class="card-title">Exam</h3>
+              <p class="card-description">Create and administer assessments</p>
+            </div>
+
+            <!-- Question Card -->
+            <div class="card" onclick="navigateTo('question')">
+              <div class="card-icon">
+                <i class="fas fa-question-circle"></i>
+              </div>
+              <h3 class="card-title">Question</h3>
+              <p class="card-description">Build and manage question banks</p>
+            </div>
+
+            <!-- Dashboard Card -->
+            <div class="card" onclick="navigateTo('dashboard')">
+              <div class="card-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3 class="card-title">Dashboard</h3>
+              <p class="card-description">View analytics and insights</p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>&copy; 2025 TeachMate AI. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="javascript/javascript.js"></script>
+  </body>
+</html>
