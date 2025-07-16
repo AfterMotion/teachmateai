@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam List - TeachMate AI</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/exam.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>TeachMate AI</span>
+                </div>
+                <p class="tagline">Exam Management System</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="exam-container">
+                <div class="exam-card">
+                    <div class="card-header">
+                        <div class="header-content">
+                            <h1 class="card-title">Exam List</h1>
+                            <p class="card-subtitle">Manage your exams and assessments</p>
+                        </div>
+                        <div class="header-actions">
+                            <a href="index.html" class="btn btn-secondary">
+                                <i class="fas fa-home"></i>
+                                Back to Home
+                            </a>
+                            <button class="btn btn-primary" id="createExamBtn">
+                                <i class="fas fa-plus"></i>
+                                Create Exam
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="exam-list" id="examList">
+                        <!-- Exam entries will be populated by JavaScript -->
+                        <div class="exam-item">
+                            <div class="exam-info">
+                                <div class="exam-name">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Text Exam 1</span>
+                                </div>
+                                <div class="exam-details">
+                                    <span class="exam-status active">Active</span>
+                                    <span class="exam-date">Created: Dec 15, 2024</span>
+                                </div>
+                            </div>
+                            <div class="exam-actions">
+                                <button class="btn btn-sm btn-edit" onclick="editExam(1)">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-sm btn-add-user" onclick="addUser(1)">
+                                    <i class="fas fa-user-plus"></i>
+                                    Add User
+                                </button>
+                                <button class="btn btn-sm btn-widget" onclick="getWidgetCode(1)">
+                                    <i class="fas fa-code"></i>
+                                    Widget Code
+                                </button>
+                                <button class="btn btn-sm btn-result" onclick="viewResult(1)">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Result
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="exam-item">
+                            <div class="exam-info">
+                                <div class="exam-name">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Mathematics Quiz</span>
+                                </div>
+                                <div class="exam-details">
+                                    <span class="exam-status draft">Draft</span>
+                                    <span class="exam-date">Created: Dec 14, 2024</span>
+                                </div>
+                            </div>
+                            <div class="exam-actions">
+                                <button class="btn btn-sm btn-edit" onclick="editExam(2)">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-sm btn-add-user" onclick="addUser(2)">
+                                    <i class="fas fa-user-plus"></i>
+                                    Add User
+                                </button>
+                                <button class="btn btn-sm btn-widget" onclick="getWidgetCode(2)">
+                                    <i class="fas fa-code"></i>
+                                    Widget Code
+                                </button>
+                                <button class="btn btn-sm btn-result" onclick="viewResult(2)">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Result
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="exam-item">
+                            <div class="exam-info">
+                                <div class="exam-name">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Science Assessment</span>
+                                </div>
+                                <div class="exam-details">
+                                    <span class="exam-status completed">Completed</span>
+                                    <span class="exam-date">Created: Dec 13, 2024</span>
+                                </div>
+                            </div>
+                            <div class="exam-actions">
+                                <button class="btn btn-sm btn-edit" onclick="editExam(3)">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-sm btn-add-user" onclick="addUser(3)">
+                                    <i class="fas fa-user-plus"></i>
+                                    Add User
+                                </button>
+                                <button class="btn btn-sm btn-widget" onclick="getWidgetCode(3)">
+                                    <i class="fas fa-code"></i>
+                                    Widget Code
+                                </button>
+                                <button class="btn btn-sm btn-result" onclick="viewResult(3)">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Result
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="no-exams" id="noExams" style="display: none;">
+                        <div class="no-exams-content">
+                            <i class="fas fa-clipboard-list"></i>
+                            <h3>No exams found</h3>
+                            <p>Create your first exam to get started</p>
+                            <button class="btn btn-primary" onclick="createNewExam()">
+                                <i class="fas fa-plus"></i>
+                                Create First Exam
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 TeachMate AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="javascript/javascript.js"></script>
+    <script src="javascript/exam.js"></script>
+</body>
+</html>

@@ -2,79 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="TeachMate AI - Application Development" />
-    <meta
-      name="keywords"
-      content="TeachMate AI, Application Development, Education, Technology"
-    />
-    <meta name="author" content="TeachMate AI" />
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="google" content="notranslate" />
-    <meta name="google-site-verification" content="your-verification-code" />
-    <meta name="google-site-verification" content="your-verification-code" />
-    <meta name="google-site-verification" content="your-verification-code" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>TeachMate AI - Application Development</title>
+    <title>TeachMate AI</title>
     <link rel="stylesheet" href="style/style.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="TeachMate AI - Application Development"
-    />
-    <meta
-      property="og:description"
-      content="Empowering Education Through Technology"
-    />
-    <meta property="og:image" content="favicon_io/og-image.png" />
-    <meta property="og:url" content="https://teachmateai.com/" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="TeachMate AI - Application Development"
-    />
-    <meta
-      name="twitter:description"
-      content="Empowering Education Through Technology"
-    />
-    <meta name="twitter:image" content="favicon_io/og-image.png" />
-    <!-- Favicon and App Icons -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="favicon_io/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="favicon_io/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="favicon_io/favicon-16x16.png"
-    />
-    <link rel="manifest" href="favicon_io/site.webmanifest" />
-    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div class="container">
-      <!-- Header with Company Logo -->
+      <!-- Header -->
       <header class="header">
         <div class="logo-container">
           <div class="logo">
@@ -89,49 +25,39 @@
       <main class="main-content">
         <div class="cards-container">
           <h1 class="page-title">Welcome to TeachMate AI</h1>
-          <p class="page-subtitle">Choose your destination to get started</p>
-
+          <p class="page-subtitle">Choose a module to get started</p>
+          
           <div class="cards-grid">
-            <!-- Course Card -->
-            <a
-              class="card __card"
-              href="courses.index.html"
-              onclick="navigateTo('course')"
-            >
+            <div class="card" onclick="navigateTo('course')">
               <div class="card-icon">
-                <i class="fas fa-book-open"></i>
+                <i class="fas fa-book"></i>
               </div>
-              <h3 class="card-title">Course</h3>
-              <p class="card-description">
-                Manage and organize your educational courses
-              </p>
-            </a>
-
-            <!-- Exam Card -->
+              <h2 class="card-title">Course Management</h2>
+              <p class="card-description">Create, organize, and manage your educational courses</p>
+            </div>
+            
             <div class="card" onclick="navigateTo('exam')">
               <div class="card-icon">
                 <i class="fas fa-clipboard-check"></i>
               </div>
-              <h3 class="card-title">Exam</h3>
-              <p class="card-description">Create and administer assessments</p>
+              <h2 class="card-title">Exam System</h2>
+              <p class="card-description">Create assessments and track student performance</p>
             </div>
-
-            <!-- Question Card -->
-            <a class="card" href="question.index.html">
+            
+            <div class="card" onclick="navigateTo('question')">
               <div class="card-icon">
                 <i class="fas fa-question-circle"></i>
               </div>
-              <h3 class="card-title">Question</h3>
-              <p class="card-description">Generate and manage questions</p>
-            </a>
-
-            <!-- Dashboard Card -->
+              <h2 class="card-title">Question Generator</h2>
+              <p class="card-description">Generate diverse question types using AI technology</p>
+            </div>
+            
             <div class="card" onclick="navigateTo('dashboard')">
               <div class="card-icon">
                 <i class="fas fa-chart-line"></i>
               </div>
-              <h3 class="card-title">Dashboard</h3>
-              <p class="card-description">View analytics and insights</p>
+              <h2 class="card-title">Analytics Dashboard</h2>
+              <p class="card-description">View detailed analytics and performance insights</p>
             </div>
           </div>
         </div>

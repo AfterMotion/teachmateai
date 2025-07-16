@@ -2,24 +2,24 @@
 :root {
     /* Light Theme Colors */
     --background: #ffffff;
-    --foreground: #0f0f0f;
+    --foreground: #1a1a1a;
     --card: #ffffff;
-    --card-foreground: #0f0f0f;
+    --card-foreground: #1a1a1a;
     --popover: #ffffff;
-    --popover-foreground: #0f0f0f;
-    --primary: #0f0f0f;
+    --popover-foreground: #1a1a1a;
+    --primary: #3b82f6;
     --primary-foreground: #ffffff;
-    --secondary: #f5f5f5;
-    --secondary-foreground: #0f0f0f;
-    --muted: #f5f5f5;
-    --muted-foreground: #737373;
-    --accent: #f5f5f5;
-    --accent-foreground: #0f0f0f;
+    --secondary: #f8fafc;
+    --secondary-foreground: #1a1a1a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #1a1a1a;
     --destructive: #ef4444;
     --destructive-foreground: #ffffff;
-    --border: #e5e5e5;
-    --input: #e5e5e5;
-    --ring: #0f0f0f;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #3b82f6;
     --radius: 0.5rem;
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -27,25 +27,25 @@
 
 /* Dark Theme Colors */
 [data-theme="dark"] {
-    --background: #0f0f0f;
-    --foreground: #ffffff;
-    --card: #1a1a1a;
-    --card-foreground: #ffffff;
-    --popover: #1a1a1a;
-    --popover-foreground: #ffffff;
-    --primary: #ffffff;
-    --primary-foreground: #0f0f0f;
-    --secondary: #262626;
-    --secondary-foreground: #ffffff;
-    --muted: #262626;
-    --muted-foreground: #a3a3a3;
-    --accent: #262626;
-    --accent-foreground: #ffffff;
-    --destructive: #7f1d1d;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #1e293b;
+    --card-foreground: #f8fafc;
+    --popover: #1e293b;
+    --popover-foreground: #f8fafc;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #334155;
+    --secondary-foreground: #f8fafc;
+    --muted: #334155;
+    --muted-foreground: #94a3b8;
+    --accent: #334155;
+    --accent-foreground: #f8fafc;
+    --destructive: #ef4444;
     --destructive-foreground: #ffffff;
-    --border: #404040;
-    --input: #404040;
-    --ring: #ffffff;
+    --border: #475569;
+    --input: #475569;
+    --ring: #3b82f6;
 }
 
 /* Reset and Base Styles */
@@ -210,7 +210,269 @@ body {
     color: var(--muted-foreground);
 }
 
-/* Theme Toggle Button */
+/* Enhanced Button System */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Ripple effect for buttons */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    box-shadow: 0 8px 25px -8px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px -10px rgba(59, 130, 246, 0.5);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px -5px rgba(59, 130, 246, 0.4);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Outline Button */
+.btn-outline {
+    background: transparent;
+    color: var(--foreground);
+    border: 2px solid var(--border);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background: var(--accent);
+    border-color: var(--ring);
+    transform: translateY(-2px);
+}
+
+/* Success Button */
+.btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    box-shadow: 0 8px 25px -8px rgba(16, 185, 129, 0.4);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px -10px rgba(16, 185, 129, 0.5);
+}
+
+.btn-success:active {
+    transform: translateY(0);
+}
+
+/* Warning Button */
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+    box-shadow: 0 8px 25px -8px rgba(245, 158, 11, 0.4);
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px -10px rgba(245, 158, 11, 0.5);
+}
+
+.btn-warning:active {
+    transform: translateY(0);
+}
+
+/* Danger Button */
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 8px 25px -8px rgba(239, 68, 68, 0.4);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px -10px rgba(239, 68, 68, 0.5);
+}
+
+.btn-danger:active {
+    transform: translateY(0);
+}
+
+/* Info Button */
+.btn-info {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    color: white;
+    box-shadow: 0 8px 25px -8px rgba(6, 182, 212, 0.4);
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px -10px rgba(6, 182, 212, 0.5);
+}
+
+.btn-info:active {
+    transform: translateY(0);
+}
+
+/* Button Sizes */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+}
+
+.btn-xl {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.25rem;
+}
+
+/* Button Icons */
+.btn i {
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Loading State */
+.btn {
+    position: relative;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.btn:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn.loading i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Button Animations */
+.btn-primary,
+.btn-success,
+.btn-warning,
+.btn-danger,
+.btn-info {
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 8px 25px -8px rgba(59, 130, 246, 0.4);
+    }
+    50% {
+        box-shadow: 0 8px 25px -8px rgba(59, 130, 246, 0.6);
+    }
+}
+
+/* Dark theme button adjustments */
+[data-theme="dark"] .btn-outline {
+    border-color: var(--border);
+    color: var(--foreground);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+    background: var(--accent);
+    border-color: var(--ring);
+}
+
+/* Theme Toggle */
 .theme-toggle {
     position: fixed;
     top: 2rem;
@@ -229,11 +491,12 @@ body {
     transition: all 0.3s ease;
     box-shadow: var(--shadow);
     z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 
 .theme-toggle:hover {
-    background-color: var(--accent);
-    transform: scale(1.05);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
 }
 
 .theme-toggle:active {
@@ -245,35 +508,33 @@ body {
     .page-title {
         font-size: 2rem;
     }
-
+    
     .page-subtitle {
         font-size: 1.1rem;
     }
-
+    
     .cards-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        padding: 0 1rem;
     }
-
+    
     .card {
         padding: 1.5rem 1rem;
     }
-
+    
     .card-icon {
         width: 60px;
         height: 60px;
-        margin-bottom: 1rem;
     }
-
+    
     .card-icon i {
         font-size: 1.5rem;
     }
-
+    
     .card-title {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
     }
-
+    
     .theme-toggle {
         top: 1rem;
         right: 1rem;
@@ -281,15 +542,15 @@ body {
         height: 40px;
         font-size: 1rem;
     }
-
+    
     .logo {
         font-size: 1.5rem;
     }
-
+    
     .logo i {
         font-size: 2rem;
     }
-
+    
     .tagline {
         font-size: 1rem;
     }
@@ -297,32 +558,31 @@ body {
 
 @media (max-width: 480px) {
     .header {
-        padding: 1.5rem 1rem;
+        padding: 1rem;
     }
-
+    
     .main-content {
-        padding: 1.5rem 1rem;
+        padding: 1rem;
     }
-
+    
     .page-title {
         font-size: 1.75rem;
     }
-
+    
     .page-subtitle {
         font-size: 1rem;
-        margin-bottom: 2rem;
     }
-
+    
     .cards-grid {
         gap: 1rem;
     }
-
+    
     .card {
         padding: 1.25rem 1rem;
     }
 }
 
-/* Focus States for Accessibility */
+/* Focus styles for accessibility */
 .card:focus {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
@@ -338,7 +598,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Loading animation for cards */
+/* Animation for cards */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -352,7 +612,7 @@ html {
 }
 
 .card {
-    animation: fadeInUp 0.6s ease forwards;
+    animation: fadeInUp 0.6s ease-out;
 }
 
 .card:nth-child(1) {
@@ -370,6 +630,37 @@ html {
 .card:nth-child(4) {
     animation-delay: 0.4s;
 }
+
+/* Additional animations */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
 .__card{
     text-decoration: none;
     color: var(--foreground);

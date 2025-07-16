@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Exam - TeachMate AI</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/exam.css">
+    <link rel="stylesheet" href="style/createexam.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>TeachMate AI</span>
+                </div>
+                <p class="tagline">Create New Exam</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="createexam-container">
+                <div class="createexam-card">
+                    <div class="card-header">
+                        <div class="header-content">
+                            <h1 class="card-title">Create Exam</h1>
+                            <p class="card-subtitle">Set up your exam with questions and settings</p>
+                        </div>
+                        <div class="header-actions">
+                            <a href="exam.index.html" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to Exams
+                            </a>
+                            <button class="btn btn-primary" id="saveExamBtn">
+                                <i class="fas fa-save"></i>
+                                Save Exam
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="createexam-content">
+                        <!-- Exam Details Section -->
+                        <div class="exam-details-section">
+                            <h3 class="section-title">Exam Details</h3>
+                            
+                            <div class="details-row">
+                                <div class="input-group">
+                                    <label for="examName" class="input-label">Exam Name</label>
+                                    <input 
+                                        type="text" 
+                                        id="examName" 
+                                        class="form-input" 
+                                        placeholder="Enter exam name"
+                                        required
+                                    >
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="totalMarks" class="input-label">Total Marks</label>
+                                    <input 
+                                        type="number" 
+                                        id="totalMarks" 
+                                        class="form-input" 
+                                        placeholder="100"
+                                        min="1"
+                                        max="1000"
+                                        required
+                                    >
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="duration" class="input-label">Duration (minutes)</label>
+                                    <input 
+                                        type="number" 
+                                        id="duration" 
+                                        class="form-input" 
+                                        placeholder="60"
+                                        min="1"
+                                        max="300"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="details-row">
+                                <div class="input-group">
+                                    <label for="schedule" class="input-label">Schedule</label>
+                                    <input 
+                                        type="datetime-local" 
+                                        id="schedule" 
+                                        class="form-input" 
+                                        required
+                                    >
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="questionType" class="input-label">Select Question Type</label>
+                                    <select id="questionType" class="form-select" required>
+                                        <option value="">Choose question type</option>
+                                        <option value="mcq">MCQ</option>
+                                        <option value="true-false">True/False</option>
+                                        <option value="fill-blank">Fill in the Blank</option>
+                                        <option value="subjective">Subjective</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question Section -->
+                        <div class="question-section" id="questionSection" style="display: none;">
+                            <div class="section-header">
+                                <h3 class="section-title">Question 1</h3>
+                                <button type="button" class="btn btn-sm btn-outline" id="addQuestionBtn">
+                                    <i class="fas fa-plus"></i>
+                                    Add Question
+                                </button>
+                            </div>
+
+                            <div class="question-content" id="questionContent">
+                                <!-- Question template will be loaded here based on selected type -->
+                            </div>
+                        </div>
+
+                        <!-- Question Type Selection Prompt -->
+                        <div class="question-type-prompt" id="questionTypePrompt">
+                            <div class="prompt-content">
+                                <div class="prompt-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <h3>Select Question Type</h3>
+                                <p>Please select a question type from the dropdown above to start creating questions.</p>
+                                <div class="question-type-info">
+                                    <div class="type-info-item">
+                                        <i class="fas fa-list-ul"></i>
+                                        <span><strong>MCQ:</strong> Multiple choice questions with 4 options</span>
+                                    </div>
+                                    <div class="type-info-item">
+                                        <i class="fas fa-toggle-on"></i>
+                                        <span><strong>True/False:</strong> Simple true or false questions</span>
+                                    </div>
+                                    <div class="type-info-item">
+                                        <i class="fas fa-edit"></i>
+                                        <span><strong>Fill in the Blank:</strong> Questions with blank spaces to fill</span>
+                                    </div>
+                                    <div class="type-info-item">
+                                        <i class="fas fa-align-left"></i>
+                                        <span><strong>Subjective:</strong> Open-ended descriptive questions</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Questions List -->
+                        <div class="questions-list" id="questionsList">
+                            <!-- Additional questions will be added here -->
+                        </div>
+
+                        <!-- Upload Section -->
+                        <div class="upload-section">
+                            <div class="divider">
+                                <span>Or</span>
+                            </div>
+                            
+                            <div class="upload-area">
+                                <h4>Upload Questions</h4>
+                                <p>Upload a file with your questions</p>
+                                <div class="upload-actions">
+                                    <input type="file" id="questionFile" accept=".csv,.xlsx,.txt" style="display: none;">
+                                    <button type="button" class="btn btn-outline" onclick="document.getElementById('questionFile').click()">
+                                        <i class="fas fa-upload"></i>
+                                        Upload Question
+                                    </button>
+                                    <span class="file-info" id="fileInfo">No file selected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 TeachMate AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="javascript/javascript.js"></script>
+    <script src="javascript/createexam.js"></script>
+</body>
+</html> 

@@ -64,15 +64,16 @@
 
     <!-- Fonts and Icons -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
 
     <!-- Custom Styles -->
+    <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/courses.index.css" />
   </head>
   <body>
@@ -88,50 +89,69 @@
         </div>
       </header>
 
-      <!-- Main Content -->
-      <main class="main-content">
-        <button class="btn back-btn" onclick="goBack()">
-          <i class="fas fa-arrow-left"></i> Back
-        </button>
+              <!-- Main Content -->
+        <main class="main-content">
+            <div class="course-container">
+                <div class="course-card">
+                    <div class="card-header">
+                        <div class="header-content">
+                            <h1 class="card-title">Manage Courses</h1>
+                            <p class="card-subtitle">Create, organize, and manage your educational courses</p>
+                        </div>
+                        <div class="header-actions">
+                            <a href="index.html" class="btn btn-secondary">
+                                <i class="fas fa-home"></i>
+                                Back to Home
+                            </a>
+                            <button class="btn btn-primary" onclick="openModal()">
+                                <i class="fas fa-plus"></i>
+                                Create Course
+                            </button>
+                        </div>
+                    </div>
 
-        <div class="page-section">
-          <div class="page-header">
-            <h1 class="page-title">Manage Courses</h1>
-            <button class="btn add-btn" onclick="openModal()">
-              <i class="fas fa-plus"></i> Add New
-            </button>
-          </div>
+                              <div class="course-list" id="courseList">
+                        <!-- Course entries will be populated by JavaScript -->
+                        <div class="course-item">
+                            <div class="course-info">
+                                <div class="course-name">
+                                    <i class="fas fa-book"></i>
+                                    <span>Introduction to AI</span>
+                                </div>
+                                <div class="course-details">
+                                    <span class="course-status active">Active</span>
+                                    <span class="course-date">Created: Dec 15, 2024</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn btn-sm btn-view" onclick="viewCourse(1)">
+                                    <i class="fas fa-eye"></i>
+                                    View
+                                </button>
+                                <button class="btn btn-sm btn-edit" onclick="editCourse(1)">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-sm btn-delete" onclick="deleteCourse(1)">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-          <!-- Course Table -->
-          <div class="table-container">
-            <table class="course-table" id="courseTable">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Course Name</th>
-                  <th>Description</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="courseBody">
-                <tr>
-                  <td>1</td>
-                  <td>Introduction to AI</td>
-                  <td>Learn the basics of Artificial Intelligence</td>
-                  <td>
-                    <button class="btn view-btn">
-                      <a href="courses.view.html" class="__card">
-                        <i class="fas fa-eye"></i> View
-                      </a>
-                    </button>
-                    <button class="btn delete-btn" onclick="deleteRow(this)">
-                      <i class="fas fa-trash"></i> Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                    <div class="no-courses" id="noCourses" style="display: none;">
+                        <div class="no-courses-content">
+                            <i class="fas fa-book-open"></i>
+                            <h3>No courses found</h3>
+                            <p>Create your first course to get started</p>
+                            <button class="btn btn-primary" onclick="openModal()">
+                                <i class="fas fa-plus"></i>
+                                Create First Course
+                            </button>
+                        </div>
+                    </div>
+                </div>
         </div>
       </main>
 
@@ -162,72 +182,99 @@
         </div>
       </div>
     </div>
-    
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+      <i class="fas fa-moon"></i>
+    </button>
+
     <script src="javascript/javascript.js"></script>
-    <script>
-      let courseCount = 2;
-      const sampleCourses = [
-        ["Data Structures", "Core fundamentals for programming"],
-        ["Digital Marketing", "SEO, SEM, and content marketing"],
-        ["UI/UX Design", "User experience and interface design"],
-        ["Python Programming", "Intro to Python coding concepts"],
-        ["Cloud Computing", "Learn AWS, Azure, and cloud infra"],
-        ["Cybersecurity Basics", "Intro to digital security threats"],
-      ];
+        <script>
+        let courseCount = 2;
+        const sampleCourses = [
+            ["Data Structures", "Core fundamentals for programming"],
+            ["Digital Marketing", "SEO, SEM, and content marketing"],
+            ["UI/UX Design", "User experience and interface design"],
+            ["Python Programming", "Intro to Python coding concepts"],
+            ["Cloud Computing", "Learn AWS, Azure, and cloud infra"],
+            ["Cybersecurity Basics", "Intro to digital security threats"],
+        ];
 
-      window.onload = () => {
-        sampleCourses.forEach(([name, desc]) => {
-          addCourseToTable(name, desc);
-        });
-      };
+        window.onload = () => {
+            sampleCourses.forEach(([name, desc]) => {
+                addCourseToList(name, desc);
+            });
+        };
 
-      function openModal() {
-        document.getElementById("courseModal").classList.remove("hidden");
-      }
+        function openModal() {
+            document.getElementById("courseModal").classList.remove("hidden");
+        }
 
-      function closeModal() {
-        document.getElementById("courseModal").classList.add("hidden");
-        document.getElementById("courseName").value = "";
-        document.getElementById("courseDesc").value = "";
-      }
+        function closeModal() {
+            document.getElementById("courseModal").classList.add("hidden");
+            document.getElementById("courseName").value = "";
+            document.getElementById("courseDesc").value = "";
+        }
 
-      function addCourse() {
-        const name = document.getElementById("courseName").value.trim();
-        const desc = document.getElementById("courseDesc").value.trim();
-        if (name === "" || desc === "") return;
-        addCourseToTable(name, desc);
-        closeModal();
-      }
+        function addCourse() {
+            const name = document.getElementById("courseName").value.trim();
+            const desc = document.getElementById("courseDesc").value.trim();
+            if (name === "" || desc === "") return;
+            addCourseToList(name, desc);
+            closeModal();
+        }
 
-      function addCourseToTable(name, desc) {
-        const tbody = document.getElementById("courseBody");
-        const row = document.createElement("tr");
+        function addCourseToList(name, desc) {
+            const courseList = document.getElementById("courseList");
+            const courseItem = document.createElement("div");
+            courseItem.className = "course-item";
 
-        row.innerHTML = `
-          <td>${courseCount}</td>
-          <td>${name}</td>
-          <td>${desc}</td>
-         <td>
-            <a href="courses.view.html" class="btn view-btn __card">
-                <i class="fas fa-eye"></i> View
-            </a>
-            <button class="btn delete-btn" onclick="deleteRow(this)">
-                <i class="fas fa-trash"></i> Delete
-            </button>
-        </td>
-        `;
+            courseItem.innerHTML = `
+                <div class="course-info">
+                    <div class="course-name">
+                        <i class="fas fa-book"></i>
+                        <span>${name}</span>
+                    </div>
+                    <div class="course-details">
+                        <span class="course-status active">Active</span>
+                        <span class="course-date">Created: Dec ${courseCount}, 2024</span>
+                    </div>
+                </div>
+                <div class="course-actions">
+                    <button class="btn btn-sm btn-view" onclick="viewCourse(${courseCount})">
+                        <i class="fas fa-eye"></i>
+                        View
+                    </button>
+                    <button class="btn btn-sm btn-edit" onclick="editCourse(${courseCount})">
+                        <i class="fas fa-edit"></i>
+                        Edit
+                    </button>
+                    <button class="btn btn-sm btn-delete" onclick="deleteCourse(${courseCount})">
+                        <i class="fas fa-trash"></i>
+                        Delete
+                    </button>
+                </div>
+            `;
 
-        tbody.appendChild(row);
-        courseCount++;
-      }
+            courseList.appendChild(courseItem);
+            courseCount++;
+        }
 
-      function deleteRow(button) {
-        const row = button.closest("tr");
-        row.remove();
-      }
-      function goBack() {
-  window.history.back();
-}
+        function viewCourse(id) {
+            window.location.href = 'courses.view.html';
+        }
+
+        function editCourse(id) {
+            // Implement edit functionality
+            console.log('Edit course:', id);
+        }
+
+        function deleteCourse(id) {
+            const courseItem = event.target.closest('.course-item');
+            if (courseItem) {
+                courseItem.remove();
+            }
+        }
     </script>
 
     <style>
@@ -249,64 +296,71 @@
       }
 
       .modal-content {
-        background: #fff;
-        padding: 24px;
+        background: white;
+        padding: 30px;
         border-radius: 12px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
         width: 90%;
-        max-width: 420px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
       }
 
       .form-group label {
         display: block;
-        margin-top: 10px;
-        font-weight: 600;
-        font-size: 14px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #333;
       }
 
       .form-group input,
       .form-group textarea {
-        width: calc(100% - 20px);
-        padding: 10px;
-        margin-top: 6px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
         font-size: 14px;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
       }
 
       .modal-actions {
         display: flex;
+        gap: 12px;
         justify-content: flex-end;
-        gap: 10px;
         margin-top: 20px;
       }
 
-      .modal-actions button {
-        padding: 10px 16px;
-        font-size: 14px;
-      }
-      .__card {
-        text-decoration: none;
-        color: #000;
-      }
       .back-btn {
-  background-color: #f3f3f3;
-  border: 1px solid #ccc;
-  color: #333;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 14px;
-  margin-bottom: 16px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.3s;
-}
+        background-color: #f3f3f3;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-bottom: 16px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: background 0.3s;
+      }
 
-.back-btn:hover {
-  background-color: #e0e0e0;
-}
+      .back-btn:hover {
+        background-color: #e0e0e0;
+      }
     </style>
   </body>
 </html>

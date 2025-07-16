@@ -1,48 +1,12 @@
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #fff;
-    color: #000;
-    margin: 0;
-    padding: 0;
-}
+/* Exam Module Styles */
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.logo-container .logo {
-    font-size: 24px;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.tagline {
-    font-size: 14px;
-    color: #666;
-}
-
-.main-content {
-    padding: 20px 0;
-}
-
-/* Course Container */
-.course-container {
+.exam-container {
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
 }
 
-.course-card {
+.exam-card {
     background-color: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -83,53 +47,64 @@ body {
     align-items: center;
 }
 
-/* Enhanced Action Buttons for Course Module */
-.course-actions .btn {
+/* Enhanced Action Buttons for Exam Module */
+.exam-actions .btn {
     margin: 0 0.25rem;
     font-weight: 600;
     border-radius: 8px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.course-actions .btn-view {
+.exam-actions .btn-edit {
     background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     color: white;
     box-shadow: 0 6px 20px -6px rgba(59, 130, 246, 0.4);
 }
 
-.course-actions .btn-view:hover {
+.exam-actions .btn-edit:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px -8px rgba(59, 130, 246, 0.6);
 }
 
-.course-actions .btn-edit {
+.exam-actions .btn-add-user {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: white;
     box-shadow: 0 6px 20px -6px rgba(16, 185, 129, 0.4);
 }
 
-.course-actions .btn-edit:hover {
+.exam-actions .btn-add-user:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px -8px rgba(16, 185, 129, 0.6);
 }
 
-.course-actions .btn-delete {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+.exam-actions .btn-widget {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     color: white;
-    box-shadow: 0 6px 20px -6px rgba(239, 68, 68, 0.4);
+    box-shadow: 0 6px 20px -6px rgba(245, 158, 11, 0.4);
 }
 
-.course-actions .btn-delete:hover {
+.exam-actions .btn-widget:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px -8px rgba(239, 68, 68, 0.6);
+    box-shadow: 0 10px 30px -8px rgba(245, 158, 11, 0.6);
 }
 
-/* Course List */
-.course-list {
+.exam-actions .btn-result {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    box-shadow: 0 6px 20px -6px rgba(139, 92, 246, 0.4);
+}
+
+.exam-actions .btn-result:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -8px rgba(139, 92, 246, 0.6);
+}
+
+/* Exam List */
+.exam-list {
     padding: 2rem 2.5rem;
 }
 
-.course-item {
+.exam-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -143,13 +118,13 @@ body {
     overflow: hidden;
 }
 
-.course-item:hover {
+.exam-item:hover {
     box-shadow: var(--shadow-lg);
     border-color: var(--primary);
     transform: translateY(-2px);
 }
 
-.course-item::before {
+.exam-item::before {
     content: '';
     position: absolute;
     left: 0;
@@ -160,14 +135,14 @@ body {
     border-radius: 0 var(--radius) var(--radius) 0;
 }
 
-.course-info {
+.exam-info {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     flex: 1;
 }
 
-.course-name {
+.exam-name {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -176,12 +151,12 @@ body {
     color: var(--foreground);
 }
 
-.course-name i {
+.exam-name i {
     color: var(--primary);
     font-size: 1.1rem;
 }
 
-.course-details {
+.exam-details {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -189,7 +164,7 @@ body {
     color: var(--muted-foreground);
 }
 
-.course-status {
+.exam-status {
     padding: 0.25rem 0.75rem;
     border-radius: 1rem;
     font-size: 0.8rem;
@@ -198,132 +173,60 @@ body {
     letter-spacing: 0.5px;
 }
 
-.course-status.active {
+.exam-status.active {
     background-color: #dcfce7;
     color: #166534;
     border: 1px solid #22c55e;
 }
 
-.course-status.draft {
+.exam-status.draft {
     background-color: #fef3c7;
     color: #92400e;
     border: 1px solid #f59e0b;
 }
 
-.course-status.completed {
+.exam-status.completed {
     background-color: #dbeafe;
     color: #1e40af;
     border: 1px solid #3b82f6;
 }
 
-.course-actions {
+.exam-actions {
     display: flex;
     gap: 0.5rem;
     align-items: center;
 }
 
-/* No Courses State */
-.no-courses {
-    padding: 4rem 2.5rem;
+/* No Exams State */
+.no-exams {
     text-align: center;
+    padding: 3rem 1rem;
 }
 
-.no-courses-content {
+.no-exams-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
 }
 
-.no-courses-content i {
+.no-exams-content i {
     font-size: 3rem;
     color: var(--muted-foreground);
     margin-bottom: 1rem;
 }
 
-.no-courses-content h3 {
+.no-exams-content h3 {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--foreground);
     margin: 0;
 }
 
-.no-courses-content p {
+.no-exams-content p {
     color: var(--muted-foreground);
     font-size: 1rem;
     margin: 0;
-}
-
-/* Button Styles */
-.btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-    color: inherit;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    box-shadow: 0 6px 20px -6px rgba(102, 126, 234, 0.4);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px -8px rgba(102, 126, 234, 0.6);
-}
-
-.btn-secondary {
-    background: var(--secondary);
-    color: var(--secondary-foreground);
-    border: 1px solid var(--border);
-}
-
-.btn-secondary:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-}
-
-.btn-sm {
-    padding: 6px 12px;
-    font-size: 12px;
-}
-
-/* Button Icons Animation */
-.btn i {
-    transition: transform 0.3s ease;
-}
-
-.btn:hover i {
-    transform: scale(1.1);
-}
-
-.footer {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 13px;
-    color: #666;
-    margin-top: 40px;
-}
-
-.theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: black;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
 }
 
 /* Responsive Design */
@@ -331,37 +234,39 @@ body {
     .card-header {
         flex-direction: column;
         gap: 1rem;
+        align-items: flex-start;
         padding: 1.5rem;
     }
 
     .header-actions {
-        flex-direction: column;
         width: 100%;
+        justify-content: space-between;
     }
 
-    .course-list {
+    .exam-list {
         padding: 1.5rem;
     }
 
-    .course-item {
+    .exam-item {
         flex-direction: column;
         gap: 1rem;
         align-items: flex-start;
     }
 
-    .course-actions {
+    .exam-actions {
         width: 100%;
-        justify-content: flex-start;
+        justify-content: space-between;
         flex-wrap: wrap;
+        gap: 0.5rem;
     }
 
-    .course-actions .btn {
+    .exam-actions .btn {
         flex: 1;
         min-width: 80px;
     }
 
     .card-title {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
 }
 
@@ -370,43 +275,42 @@ body {
         padding: 1rem;
     }
 
-    .course-list {
+    .exam-list {
         padding: 1rem;
     }
 
-    .course-item {
+    .exam-item {
         padding: 1rem;
     }
 
-    .course-name {
+    .exam-name {
         font-size: 1.1rem;
     }
 
-    .course-details {
+    .exam-details {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
     }
 
-    .course-actions {
+    .exam-actions {
         flex-direction: column;
         width: 100%;
     }
 
-    .course-actions .btn {
+    .exam-actions .btn {
         width: 100%;
-        justify-content: center;
     }
 }
 
-/* Animation for course items */
-.course-item {
+/* Animation for exam items */
+.exam-item {
     animation: fadeInUp 0.6s ease-out;
 }
 
-.course-item:nth-child(1) { animation-delay: 0.1s; }
-.course-item:nth-child(2) { animation-delay: 0.2s; }
-.course-item:nth-child(3) { animation-delay: 0.3s; }
+.exam-item:nth-child(1) { animation-delay: 0.1s; }
+.exam-item:nth-child(2) { animation-delay: 0.2s; }
+.exam-item:nth-child(3) { animation-delay: 0.3s; }
 
 @keyframes fadeInUp {
     from {
@@ -420,21 +324,20 @@ body {
 }
 
 /* Dark theme adjustments */
-[data-theme="dark"] .course-status.active {
+[data-theme="dark"] .exam-status.active {
     background-color: #064e3b;
-    color: #6ee7b7;
+    color: #d1fae5;
     border-color: #10b981;
 }
 
-[data-theme="dark"] .course-status.draft {
+[data-theme="dark"] .exam-status.draft {
     background-color: #451a03;
-    color: #fbbf24;
+    color: #fef3c7;
     border-color: #f59e0b;
 }
 
-[data-theme="dark"] .course-status.completed {
+[data-theme="dark"] .exam-status.completed {
     background-color: #1e3a8a;
-    color: #93c5fd;
+    color: #dbeafe;
     border-color: #3b82f6;
-}
-  
+} 

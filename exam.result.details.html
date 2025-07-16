@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Details - TeachMate AI</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/exam.css">
+    <link rel="stylesheet" href="style/result.css">
+    <link rel="stylesheet" href="style/result-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>TeachMate AI</span>
+                </div>
+                <p class="tagline">Result Details</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="result-details-container">
+                <div class="result-details-card">
+                    <div class="card-header">
+                        <div class="header-content">
+                            <h1 class="card-title">Result Details</h1>
+                            <p class="card-subtitle">Detailed analysis of student performance</p>
+                        </div>
+                        <div class="header-actions">
+                            <a href="exam.result.html" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to Results
+                            </a>
+                            <button class="btn btn-success" id="printBtn">
+                                <i class="fas fa-print"></i>
+                                Print Report
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="result-details-content">
+                        <!-- Student Info -->
+                        <div class="student-info-section">
+                            <div class="student-profile">
+                                <div class="student-avatar-large">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="student-details-large">
+                                    <h2 class="student-name">John Doe</h2>
+                                    <p class="student-id">ID: 001 | Phone: 01840000000</p>
+                                    <div class="performance-summary">
+                                        <div class="performance-item">
+                                            <span class="label">Total Marks:</span>
+                                            <span class="value">100/100</span>
+                                        </div>
+                                        <div class="performance-item">
+                                            <span class="label">Percentage:</span>
+                                            <span class="value">100%</span>
+                                        </div>
+                                        <div class="performance-item">
+                                            <span class="label">Status:</span>
+                                            <span class="status passed">Passed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question Analysis -->
+                        <div class="question-analysis-section">
+                            <div class="section-header">
+                                <h3>Question Analysis</h3>
+                                <p>Detailed breakdown of each question and student's answers</p>
+                            </div>
+
+                            <div class="questions-list" id="questionsList">
+                                <!-- Question 1 -->
+                                <div class="question-item">
+                                    <div class="question-header">
+                                        <span class="question-number">Q1</span>
+                                        <span class="question-status correct">
+                                            <i class="fas fa-check"></i>
+                                            Correct
+                                        </span>
+                                    </div>
+                                    <div class="question-content">
+                                        <h4 class="question-text">Sample Question</h4>
+                                        <div class="options-list">
+                                            <div class="option-item">
+                                                <span class="option-label">A.</span>
+                                                <span class="option-text">Sample Option</span>
+                                            </div>
+                                            <div class="option-item">
+                                                <span class="option-label">B.</span>
+                                                <span class="option-text">Sample Option</span>
+                                            </div>
+                                            <div class="option-item correct">
+                                                <span class="option-label">C.</span>
+                                                <span class="option-text">Sample Option (Correct)</span>
+                                                <span class="correct-badge">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                            </div>
+                                            <div class="option-item">
+                                                <span class="option-label">D.</span>
+                                                <span class="option-text">Sample Option</span>
+                                            </div>
+                                        </div>
+                                        <div class="student-answer">
+                                            <span class="answer-label">Student's Answer:</span>
+                                            <span class="answer-value correct">C - Sample Option (Correct)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Question 2 -->
+                                <div class="question-item">
+                                    <div class="question-header">
+                                        <span class="question-number">Q2</span>
+                                        <span class="question-status incorrect">
+                                            <i class="fas fa-times"></i>
+                                            Incorrect
+                                        </span>
+                                    </div>
+                                    <div class="question-content">
+                                        <h4 class="question-text">What is the capital of Bangladesh?</h4>
+                                        <div class="options-list">
+                                            <div class="option-item">
+                                                <span class="option-label">A.</span>
+                                                <span class="option-text">Chittagong</span>
+                                            </div>
+                                            <div class="option-item correct">
+                                                <span class="option-label">B.</span>
+                                                <span class="option-text">Dhaka (Correct)</span>
+                                                <span class="correct-badge">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                            </div>
+                                            <div class="option-item">
+                                                <span class="option-label">C.</span>
+                                                <span class="option-text">Sylhet</span>
+                                            </div>
+                                            <div class="option-item">
+                                                <span class="option-label">D.</span>
+                                                <span class="option-text">Rajshahi</span>
+                                            </div>
+                                        </div>
+                                        <div class="student-answer">
+                                            <span class="answer-label">Student's Answer:</span>
+                                            <span class="answer-value incorrect">A - Chittagong</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Question 3 -->
+                                <div class="question-item">
+                                    <div class="question-header">
+                                        <span class="question-number">Q3</span>
+                                        <span class="question-status correct">
+                                            <i class="fas fa-check"></i>
+                                            Correct
+                                        </span>
+                                    </div>
+                                    <div class="question-content">
+                                        <h4 class="question-text">Which programming language is known as the language of the web?</h4>
+                                        <div class="options-list">
+                                            <div class="option-item">
+                                                <span class="option-label">A.</span>
+                                                <span class="option-text">Python</span>
+                                            </div>
+                                            <div class="option-item">
+                                                <span class="option-label">B.</span>
+                                                <span class="option-text">Java</span>
+                                            </div>
+                                            <div class="option-item">
+                                                <span class="option-label">C.</span>
+                                                <span class="option-text">C++</span>
+                                            </div>
+                                            <div class="option-item correct">
+                                                <span class="option-label">D.</span>
+                                                <span class="option-text">JavaScript (Correct)</span>
+                                                <span class="correct-badge">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="student-answer">
+                                            <span class="answer-label">Student's Answer:</span>
+                                            <span class="answer-value correct">D - JavaScript (Correct)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Summary -->
+                        <div class="performance-summary-section">
+                            <div class="summary-cards">
+                                <div class="summary-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4>Correct Answers</h4>
+                                        <span class="card-value">8/10</span>
+                                    </div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-times-circle"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4>Incorrect Answers</h4>
+                                        <span class="card-value">2/10</span>
+                                    </div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4>Time Taken</h4>
+                                        <span class="card-value">45 min</span>
+                                    </div>
+                                </div>
+                                <div class="summary-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4>Performance</h4>
+                                        <span class="card-value">Excellent</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 TeachMate AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="javascript/javascript.js"></script>
+    <script src="javascript/result-details.js"></script>
+</body>
+</html> 

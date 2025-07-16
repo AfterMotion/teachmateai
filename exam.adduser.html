@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User - TeachMate AI</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/exam.css">
+    <link rel="stylesheet" href="style/adduser.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>TeachMate AI</span>
+                </div>
+                <p class="tagline">Add Users to Exam</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="adduser-container">
+                <div class="adduser-card">
+                    <div class="card-header">
+                        <div class="header-content">
+                            <h1 class="card-title">Add User</h1>
+                            <p class="card-subtitle">Add participants to your exam</p>
+                        </div>
+                        <div class="header-actions">
+                            <a href="exam.index.html" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to Exams
+                            </a>
+                            <button class="btn btn-add-user" id="saveUsersBtn">
+                                <i class="fas fa-save"></i>
+                                Save Users
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="adduser-content">
+                        <div class="exam-info">
+                            <div class="exam-detail">
+                                <span class="label">Exam:</span>
+                                <span class="value" id="examName">Text Exam 1</span>
+                            </div>
+                            <div class="exam-detail">
+                                <span class="label">Status:</span>
+                                <span class="value status-active">Active</span>
+                            </div>
+                        </div>
+
+                        <div class="user-input-section">
+                            <div class="section-header">
+                                <h3>Add Users</h3>
+                                <p>Enter phone numbers or user IDs to add participants</p>
+                            </div>
+
+                            <form id="addUserForm" class="user-form">
+                                <div class="user-inputs" id="userInputs">
+                                    <div class="user-input-group">
+                                        <label for="user1" class="input-label">User 1</label>
+                                        <input 
+                                            type="text" 
+                                            id="user1" 
+                                            class="user-input" 
+                                            placeholder="01840000000"
+                                            value="01840000000"
+                                        >
+                                        <button type="button" class="remove-user-btn" onclick="removeUser(this)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="user-input-group">
+                                        <label for="user2" class="input-label">User 2</label>
+                                        <input 
+                                            type="text" 
+                                            id="user2" 
+                                            class="user-input" 
+                                            placeholder="01840000000"
+                                            value="01840000000"
+                                        >
+                                        <button type="button" class="remove-user-btn" onclick="removeUser(this)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="user-input-group">
+                                        <label for="user3" class="input-label">User 3</label>
+                                        <input 
+                                            type="text" 
+                                            id="user3" 
+                                            class="user-input" 
+                                            placeholder="01840000000"
+                                            value="01840000000"
+                                        >
+                                        <button type="button" class="remove-user-btn" onclick="removeUser(this)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="user-input-group">
+                                        <label for="user4" class="input-label">User 4</label>
+                                        <input 
+                                            type="text" 
+                                            id="user4" 
+                                            class="user-input" 
+                                            placeholder="01840000000"
+                                            value="01840000000"
+                                        >
+                                        <button type="button" class="remove-user-btn" onclick="removeUser(this)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-outline" id="addMoreBtn">
+                                        <i class="fas fa-plus"></i>
+                                        Add More Users
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="bulk-upload-section">
+                            <div class="divider">
+                                <span>Or</span>
+                            </div>
+                            
+                            <div class="bulk-upload">
+                                <h4>Bulk Upload</h4>
+                                <p>Upload a CSV file with user information</p>
+                                <div class="upload-area">
+                                    <input type="file" id="csvFile" accept=".csv" style="display: none;">
+                                    <button type="button" class="btn btn-outline" onclick="document.getElementById('csvFile').click()">
+                                        <i class="fas fa-upload"></i>
+                                        Choose CSV File
+                                    </button>
+                                    <span class="file-info" id="fileInfo">No file selected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 TeachMate AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script src="javascript/javascript.js"></script>
+    <script src="javascript/adduser.js"></script>
+</body>
+</html> 
